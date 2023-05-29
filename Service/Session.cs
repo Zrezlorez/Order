@@ -6,11 +6,15 @@ namespace Order.Service;
 internal class Session
 {
     public User User { get; }
+    public Storage Storage { get; }
+    public Role Role { get; }
     public static Session? Instance { get; set; }
 
-    private Session(User user)
+    private Session(User user, Storage storage, Role role)
     {
         User = user;
+        Storage = storage;
+        Role = role;
     }
 
     public static int Auth(string login, string password)
@@ -22,7 +26,7 @@ internal class Session
 
         if (user == null) return 0;
 
-        Instance = new Session(user);
+        Instance = new Session(user, user.Storage, user.Role);
         return 1;
     }
 }

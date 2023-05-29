@@ -15,10 +15,13 @@ namespace Order.Database
         public Manager()
         {
             Database.EnsureCreated();
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=storage;Username=postgres;Password=admin");
+            optionsBuilder
+                .UseLazyLoadingProxies()
+                .UseNpgsql("Host=localhost;Port=5432;Database=storage;Username=postgres;Password=admin");
         }
     }
 }

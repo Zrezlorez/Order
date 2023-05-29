@@ -13,15 +13,15 @@ namespace Order.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (Session.Auth(login.Text, password.Text) == 1) {
-                Hide();
-                new ProductView().Show();
-            }
+            if (Session.Auth(login.Text, password.Text) == 0) return;
+
+            Hide();
+            new ProductView().Show();
+
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
+        private void checkBox1_CheckedChanged(object sender, EventArgs e) =>
             password.UseSystemPasswordChar = !password.UseSystemPasswordChar;
-        }
+
     }
 }
