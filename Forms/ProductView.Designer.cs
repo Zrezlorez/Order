@@ -74,6 +74,7 @@
             dataGridView1.TabIndex = 5;
             dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
             dataGridView1.UserAddedRow += dataGridView1_UserAddedRow;
+            dataGridView1.UserDeletingRow += dataGridView1_UserDeletingRow;
             // 
             // Column1
             // 

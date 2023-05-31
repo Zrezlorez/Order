@@ -16,11 +16,8 @@ namespace Order
         private void ProductView_Load(object sender, EventArgs e)
         {
             using var db = new Context();
-            if (Session.Instance.User.RoleId > 1)
-            {
-                button3.Visible = true;
-                button4.Visible = true;
-            }
+            button3.Visible = Session.Instance.User.RoleId > 1;
+            button4.Visible = Session.Instance.User.RoleId > 2;
             comboBox1.Items.AddRange(db.Products.Select(p => p.Name).ToArray());
         }
 
@@ -43,7 +40,9 @@ namespace Order
         {
             using Context db = new Context();
             Product? product = db.Products.Find(comboBox1.SelectedIndex + 1);
+            if (product == null) return;
             description.Text = product.Description;
+            if (product.ImagePath == null) return;
             pictureBox1.Image = System.Drawing.Image.FromFile(product.ImagePath);
             var changeLogs = db.ChangeLogs
                 .Where(c => c.StorageId == Session.Instance.User.StorageId && c.ProductId == product.Id)
@@ -69,7 +68,17 @@ namespace Order
         {
             dataGridView1[1, e.RowIndex].Value = ChangeLogService
                 .Update(changeLogIds[e.RowIndex], Convert.ToInt32(dataGridView1[0, e.RowIndex].Value))
-                .Change;
+                .Result;
+        }
+
+        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            using var db = new Context();
+            var item = db.ChangeLogs.Find(changeLogIds[e.Row.Index]);
+            changeLogIds.Remove(item.Id);
+            db.ChangeLogs.Remove(item);
+            
+            db.SaveChanges();
         }
     }
 }

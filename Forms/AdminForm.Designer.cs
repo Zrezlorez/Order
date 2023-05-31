@@ -189,6 +189,7 @@
             Controls.Add(panel1);
             Name = "AdminForm";
             Text = "AdminForm";
+            FormClosing += AdminForm_FormClosing;
             Load += AdminForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

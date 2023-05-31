@@ -78,5 +78,8 @@ namespace Order.Forms
 
         public void setEnable(bool value)
             => this.Enabled = value;
+
+        private void AdminForm_FormClosing(object sender, FormClosingEventArgs e)
+            => Application.Exit();
     }
 }

@@ -149,6 +149,7 @@ namespace Order.Forms
             addProduct.TabIndex = 8;
             addProduct.Text = "Добавить";
             addProduct.UseVisualStyleBackColor = true;
+            addProduct.Click += addProduct_Click;
             // 
             // label1
             // 

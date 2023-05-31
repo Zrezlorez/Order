@@ -18,11 +18,8 @@ namespace Order.Forms
 
         private void Report_Load(object sender, EventArgs e)
         {
-            if (Session.Instance.User.RoleId > 1)
-            {
-                button3.Enabled = true;
-                button4.Enabled = true;
-            }
+            button3.Visible = Session.Instance.User.RoleId > 1;
+            button4.Visible = Session.Instance.User.RoleId > 2;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -62,8 +59,5 @@ namespace Order.Forms
             workbook.PrintDocument.Print();
             MessageBox.Show("Печать отчёта");
         }
-
-
-
     }
 }

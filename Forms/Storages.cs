@@ -2,6 +2,7 @@
 using Order.Forms.StorageForms;
 using Order.Service;
 using System.Data;
+using System.Windows.Forms;
 
 namespace Order.Forms
 {
@@ -16,6 +17,7 @@ namespace Order.Forms
 
         private void Storages_Load(object sender, EventArgs e)
         {
+            button4.Visible = Session.Instance.User.RoleId > 2;
             using var db = new Context();
             comboBox1.Items.AddRange(db.Storages.Select(p => p.Adress).ToArray());
             if (Session.Instance.Role.Id == 2)
@@ -35,7 +37,10 @@ namespace Order.Forms
             var storage = db.Storages.Find(comboBox1.SelectedIndex + 1);
             foreach (var item in storage.Products)
             {
-                dataGridView1.Rows.Add(item.Name, item.ChangeLogs.Last().Result);
+                int lastResult = 0;
+                if (item.ChangeLogs.Count > 1)
+                    lastResult = item.ChangeLogs.Last().Result;
+                addToProducts(item.Id, item.Name, lastResult);
             }
             foreach (var item in storage.Users)
             {
@@ -47,6 +52,11 @@ namespace Order.Forms
         {
             userIds.Add(id);
             dataGridView2.Rows.Add(param);
+        }
+        public void addToProducts(int id, params object[] param)
+        {
+            productIds.Add(id);
+            dataGridView1.Rows.Add(param);
         }
 
         public void setEnable(bool value)
@@ -101,5 +111,12 @@ namespace Order.Forms
 
         private void button4_Click(object sender, EventArgs e)
             => Util.ShowFormById(this, 4);
+
+        private void addProduct_Click(object sender, EventArgs e)
+        {
+            CreateProduct createProduct = new CreateProduct(this);
+            createProduct.Show();
+            this.Enabled = false;
+        }
     }
 }

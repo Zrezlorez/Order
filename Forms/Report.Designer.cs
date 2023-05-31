@@ -63,6 +63,7 @@ namespace Order.Forms
             button4.TabIndex = 9;
             button4.Text = "Пользователи";
             button4.UseVisualStyleBackColor = true;
+            button4.Visible = false;
             button4.Click += button4_Click;
             // 
             // button3
@@ -73,6 +74,7 @@ namespace Order.Forms
             button3.TabIndex = 8;
             button3.Text = "Склады";
             button3.UseVisualStyleBackColor = true;
+            button3.Visible = false;
             button3.Click += button3_Click;
             // 
             // button2
@@ -91,7 +93,7 @@ namespace Order.Forms
             button1.Name = "button1";
             button1.Size = new Size(100, 23);
             button1.TabIndex = 6;
-            button1.Text = "Просмотр";
+            button1.Text = "Товары";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
