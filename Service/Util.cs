@@ -28,9 +28,9 @@ namespace Order.Service
             return DateTime.SpecifyKind(dateTime, DateTimeKind.Utc);
         }
 
-        public static WorkBook GenerateExcel(List<ChangeLog> changeLogs)
+        public static string GenerateExcel(List<ChangeLog> changeLogs)
         {
-            if (changeLogs.Count == 0) return null;
+            if (changeLogs.Count == 0) return "";
             WorkBook workBook = WorkBook.Create(ExcelFileFormat.XLSX);
             var workSheet = workBook.CreateWorkSheet("example_sheet");
             workSheet[$"A1"].Value = "Изменение";
@@ -47,9 +47,9 @@ namespace Order.Service
                 workSheet[$"D{i}"].Value = item.Product.Name;
                 workSheet[$"E{i}"].Value = item.Storage.Adress;
             }
-
+            string name = $"report{DateTime.Now}.xlsx";
             workBook.SaveAs("test.xlsx");
-            return workBook;
+            return name;
         }
     }
 }

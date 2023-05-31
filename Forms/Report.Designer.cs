@@ -50,6 +50,7 @@ namespace Order.Forms
             dateTimePicker2 = new DateTimePicker();
             label1 = new Label();
             dateTimePicker1 = new DateTimePicker();
+            printDialog1 = new PrintDialog();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -219,6 +220,10 @@ namespace Order.Forms
             dateTimePicker1.Size = new Size(145, 23);
             dateTimePicker1.TabIndex = 0;
             // 
+            // printDialog1
+            // 
+            printDialog1.UseEXDialog = true;
+            // 
             // Report
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -260,5 +265,6 @@ namespace Order.Forms
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
+        private PrintDialog printDialog1;
     }
 }

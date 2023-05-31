@@ -36,7 +36,7 @@ namespace Order
         private void button4_Click(object sender, EventArgs e)
             => Util.ShowFormById(this, 4);
 
-        private void ProductView_FormClosed(object sender, FormClosedEventArgs e) 
+        private void ProductView_FormClosed(object sender, FormClosedEventArgs e)
             => Application.Exit();
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

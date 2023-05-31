@@ -145,7 +145,7 @@
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new System.Drawing.Point(21, 40);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new System.Drawing.Size(121, 23);
+            comboBox1.Size = new System.Drawing.Size(184, 23);
             comboBox1.TabIndex = 0;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 

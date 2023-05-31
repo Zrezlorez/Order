@@ -1,7 +1,10 @@
 ﻿using Order.Database;
 using Order.Database.Model;
 using Order.Service;
+using Spire.Xls;
+using Spire.Xls.Core;
 using System.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Order.Forms
 {
@@ -51,7 +54,14 @@ namespace Order.Forms
             => Util.ShowFormById(this, 4);
 
         private void button5_Click(object sender, EventArgs e)
-            => Util.GenerateExcel(changeLogs);
+        {
+            Workbook workbook = new Workbook();
+            workbook.LoadFromFile(Util.GenerateExcel(changeLogs));
+            PageSetup pageSetup = workbook.Worksheets[0].PageSetup;
+            pageSetup.IsFitToPage = true;
+            workbook.PrintDocument.Print();
+            MessageBox.Show("Печать отчёта");
+        }
 
 
 
