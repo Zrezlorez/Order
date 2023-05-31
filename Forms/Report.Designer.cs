@@ -50,7 +50,6 @@ namespace Order.Forms
             dateTimePicker2 = new DateTimePicker();
             label1 = new Label();
             dateTimePicker1 = new DateTimePicker();
-            printDocument1 = new System.Drawing.Printing.PrintDocument();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -255,7 +254,6 @@ namespace Order.Forms
         private Button button6;
         private DataGridView dataGridView1;
         private Button button5;
-        private System.Drawing.Printing.PrintDocument printDocument1;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;

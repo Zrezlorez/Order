@@ -1,4 +1,6 @@
-﻿using Order.Forms;
+﻿using IronXL;
+using Order.Database.Model;
+using Order.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,29 @@ namespace Order.Service
         {
             if (dateTime.Kind == DateTimeKind.Utc) { return dateTime; }
             return DateTime.SpecifyKind(dateTime, DateTimeKind.Utc);
+        }
+
+        public static void GenerateExcel(List<ChangeLog> changeLogs) {
+            if (changeLogs.Count == 0) return;
+            WorkBook workBook = WorkBook.Create(ExcelFileFormat.XLSX);
+            var workSheet = workBook.CreateWorkSheet("example_sheet");
+            workSheet[$"A1"].Value = "Изменение";
+            workSheet[$"B1"].Value = "Результат";
+            workSheet[$"C1"].Value = "Дата";
+            workSheet[$"D1"].Value = "Продукт";
+            workSheet[$"E1"].Value = "Склад";
+            for (int i = 1; i <= changeLogs.Count; i++)
+            {
+                var item = changeLogs[i - 1];
+                workSheet[$"A{i}"].Value = item.Change;
+                workSheet[$"B{i}"].Value = item.Result;
+                workSheet[$"C{i}"].DateTimeValue = item.DateTime;
+                workSheet[$"D{i}"].Value = item.Product.Name;
+                workSheet[$"E{i}"].Value = item.Storage.Adress;
+            }
+
+            workBook.SaveAs("test.xlsx");
+            MessageBox.Show("принт");
         }
     }
 }

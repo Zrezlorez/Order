@@ -25,7 +25,6 @@ internal class Session
             u.Login.Equals(login) && u.Password.Equals(password));
 
         if (user == null) return 0;
-
         Instance = new Session(user, user.Storage, user.Role);
         return 1;
     }

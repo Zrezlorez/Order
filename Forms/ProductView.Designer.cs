@@ -104,9 +104,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(21, 22);
+            label1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new System.Drawing.Point(21, 17);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(48, 15);
+            label1.Size = new System.Drawing.Size(62, 20);
             label1.TabIndex = 3;
             label1.Text = "Товары";
             // 

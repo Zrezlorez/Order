@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Order.Forms
 {
-    public partial class Storages : Form
+    public partial class AdminForm : Form
     {
-        public Storages()
+        public AdminForm()
         {
             InitializeComponent();
         }
