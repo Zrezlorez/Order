@@ -19,7 +19,7 @@ internal class Session
 
     public static int Auth(string login, string password)
     {
-        using var db = new Manager();
+        using var db = new Context();
 
         var user = db.Users.SingleOrDefault(u =>
             u.Login.Equals(login) && u.Password.Equals(password));

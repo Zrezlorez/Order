@@ -1,17 +1,7 @@
-﻿using IronXL;
-using Microsoft.EntityFrameworkCore;
-using Order.Database;
+﻿using Order.Database;
 using Order.Database.Model;
 using Order.Service;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Order.Forms
 {
@@ -31,9 +21,10 @@ namespace Order.Forms
                 button4.Enabled = true;
             }
         }
+
         private void button6_Click(object sender, EventArgs e)
         {
-            using Manager db = new Manager();
+            using Context db = new Context();
             dataGridView1.Rows.Clear();
             changeLogs = db.ChangeLogs.Where(c =>
                             c.DateTime.CompareTo(Util.SetKindUtc(dateTimePicker1.Value)) > 0
@@ -56,9 +47,13 @@ namespace Order.Forms
         private void button3_Click(object sender, EventArgs e)
             => Util.ShowFormById(this, 3);
 
+        private void button4_Click(object sender, EventArgs e)
+            => Util.ShowFormById(this, 4);
+
         private void button5_Click(object sender, EventArgs e)
-        {
-            Util.GenerateExcel(changeLogs);
-        }
+            => Util.GenerateExcel(changeLogs);
+
+
+
     }
 }

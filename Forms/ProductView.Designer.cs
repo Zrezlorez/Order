@@ -189,6 +189,7 @@
             button4.Text = "Пользователи";
             button4.UseVisualStyleBackColor = true;
             button4.Visible = false;
+            button4.Click += button4_Click;
             // 
             // ProductView
             // 

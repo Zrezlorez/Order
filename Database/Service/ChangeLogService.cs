@@ -1,10 +1,5 @@
 ﻿using Order.Database.Model;
 using Order.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Order.Database.Service
 {
@@ -12,7 +7,7 @@ namespace Order.Database.Service
     {
         public static ChangeLog Add(int productId, int storageId)
         {
-            using Manager db = new Manager();
+            using Context db = new Context();
             int lastResult = 0;
             if (db.ChangeLogs.Count() > 0 && db.ChangeLogs.ToList().Last() != null)
                 lastResult = db.ChangeLogs.ToList().Last().Result;
@@ -31,7 +26,7 @@ namespace Order.Database.Service
 
         public static ChangeLog Update(int id, int change)
         {
-            using Manager db = new Manager();
+            using Context db = new Context();
             ChangeLog? changeLog = db.ChangeLogs.Find(id);
 
             int lastResult = 0;

@@ -1,18 +1,18 @@
-﻿using Order.Database.Model;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Order.Database.Model;
 
 namespace Order.Database
 {
-    internal class Manager : DbContext
+    internal class Context : DbContext
     {
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Role> Roles { get; set; } = null!;
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<ChangeLog> ChangeLogs { get; set; } = null!;
         public DbSet<Storage> Storages { get; set; } = null!;
-       
 
-        public Manager()
+
+        public Context()
         {
             Database.EnsureCreated();
 

@@ -15,7 +15,7 @@ namespace Order
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Auth());
-            using var db = new Manager();
+            using var db = new Context();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Order
 
         private void ProductView_Load(object sender, EventArgs e)
         {
-            using var db = new Manager();
+            using var db = new Context();
             if (Session.Instance.User.RoleId > 1)
             {
                 button3.Visible = true;
@@ -32,12 +32,16 @@ namespace Order
 
         private void button3_Click(object sender, EventArgs e)
             => Util.ShowFormById(this, 3);
-        private void ProductView_FormClosed(object sender, FormClosedEventArgs e) =>
-            Application.Exit();
+
+        private void button4_Click(object sender, EventArgs e)
+            => Util.ShowFormById(this, 4);
+
+        private void ProductView_FormClosed(object sender, FormClosedEventArgs e) 
+            => Application.Exit();
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using Manager db = new Manager();
+            using Context db = new Context();
             Product? product = db.Products.Find(comboBox1.SelectedIndex + 1);
             description.Text = product.Description;
             pictureBox1.Image = System.Drawing.Image.FromFile(product.ImagePath);
@@ -53,7 +57,7 @@ namespace Order
 
         private void dataGridView1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
-            var changeLog = 
+            var changeLog =
                 ChangeLogService.Add(comboBox1.SelectedIndex + 1, Session.Instance.User.Storage.Id);
 
             changeLogIds.Add(changeLog.Id);

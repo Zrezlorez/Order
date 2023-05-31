@@ -62,6 +62,7 @@ namespace Order.Forms
             button4.TabIndex = 9;
             button4.Text = "Пользователи";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 

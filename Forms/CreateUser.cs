@@ -17,25 +17,23 @@ namespace Order.Forms.StorageForms
 {
     public partial class CreateUser : Form
     {
-        private Storages form;
-        private int storageId;
-        public CreateUser(Storages form, int storageId)
+        private IUserTable form;
+        public CreateUser(IUserTable form)
         {
             this.form = form;
-            this.storageId = storageId;
             InitializeComponent();
         }
 
         private void CreateUser_Load(object sender, EventArgs e)
         {
-            using var db = new Manager();
+            using var db = new Context();
             comboBox1.Items.AddRange(db.Storages.Select(s => s.Adress).ToArray());
             comboBox1.SelectedIndex = Session.Instance.Storage.Id - 1;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using var db = new Manager();
+            using var db = new Context();
             User user = new User()
             {
                 Name = textBox1.Text,
@@ -56,8 +54,6 @@ namespace Order.Forms.StorageForms
 
 
         private void CreateUser_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            form.Enabled = true;
-        }
+            => form.setEnable(true);
     }
 }
